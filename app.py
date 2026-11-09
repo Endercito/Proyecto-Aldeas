@@ -103,26 +103,26 @@ def preinscribir():
     return jsonify({'status': 'success', 'mensaje': 'Preinscripción completada con éxito.'})
 
 # Panel para Secretarios y Directivos
+# Panel para Secretarios y Directivos
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
-    
+
     if request.method == 'POST':
         nivel_a_modificar = request.form['nivel']
         nuevo_cupo = int(request.form['cupo_maximo'])
         cursor.execute("UPDATE niveles_config SET cupo_maximo = ? WHERE nivel = ?", (nuevo_cupo, nivel_a_modificar))
         conn.commit()
-    
+
     cursor.execute("SELECT * FROM niveles_config")
     config_niveles = cursor.fetchall()
-    
+
     cursor.execute("SELECT * FROM preinscripciones ORDER BY fecha_registro DESC")
     lista = cursor.fetchall()
-    
+
     conn.close()
     return render_template('admin.html', config_niveles=config_niveles, lista=lista)
-
 if __name__ == '__main__':
     init_db()
     port = int(os.environ.get("PORT", 5000))
