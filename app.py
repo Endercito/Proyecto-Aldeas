@@ -1,9 +1,6 @@
 import sqlite3
 from flask import Flask, render_template, request, jsonify, redirect, url_for
-
 import os
-
-
 
 app = Flask(__name__)
 DB_NAME = "inscripciones.db"
@@ -103,7 +100,6 @@ def preinscribir():
     return jsonify({'status': 'success', 'mensaje': 'Preinscripción completada con éxito.'})
 
 # Panel para Secretarios y Directivos
-# Panel para Secretarios y Directivos
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     conn = sqlite3.connect(DB_NAME)
@@ -123,6 +119,7 @@ def admin():
 
     conn.close()
     return render_template('admin.html', config_niveles=config_niveles, lista=lista)
+
 if __name__ == '__main__':
     init_db()
     port = int(os.environ.get("PORT", 5000))
