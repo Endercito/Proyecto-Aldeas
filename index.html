@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instituto Privado Aldeas Argentina</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #008cd6;
+      --primary-dark: #006da8;
+      --secondary-color: #2c3e50;
+      --accent-color: #f39c12;
+      --bg-light: #f8fafc;
+      --text-main: #333333;
+      --text-muted: #666666;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--secondary-color);
+      font-weight: 700;
+    }
+
+    /* BARRA SUPERIOR E INFORMACIÓN DE CONTACTO */
+    .top-bar {
+      background-color: var(--secondary-color);
+      color: #ffffff;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      transition: transform 0.3s ease, max-height 0.3s ease;
+    }
+    .top-bar-container {
+      max-width: 85%;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .top-info span {
+      margin-right: 18px;
+    }
+    .top-info i {
+      color: var(--primary-color);
+      margin-right: 6px;
+    }
+
+    /* HEADER & NAVEGACIÓN ESTILO LINNEO */
+    header {
+      background-color: #ffffff;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    .header-container {
+      max-width: 85%;
+      margin: 0 auto;
+      padding: 30px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    /* Muestra el logo y el texto en computadoras */
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+    }
+    .logo-brand img {
+      height: 58px;
+      width: auto;
+      object-fit: contain;
+    }
+    .brand-text h1 {
+      font-size: 1.35rem;
+      color: var(--primary-color);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* NAV MENU & DROPDOWNS */
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 5px;
+    }
+    nav li {
+      position: relative;
+    }
+    nav a {
+      display: block;
+      padding: 10px 16px;
+      text-decoration: none;
+      color: var(--secondary-color);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    nav a:hover, nav li:hover > a {
+      color: var(--primary-color);
+      background-color: #f0f7ff;
+    }
+
+    /* Menú desplegable */
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #ffffff;
+      min-width: 230px;
+      box-shadow: var(--shadow-md);
+      border-radius: 0 0 6px 6px;
+      border-top: 3px solid var(--primary-color);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: var(--transition);
+      z-index: 100;
+    }
+    nav li:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown a {
+      padding: 12px 18px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.85rem;
+      border-radius: 0;
+    }
+    .dropdown a:hover {
+      background-color: #f8fafc;
+      padding-left: 22px;
+    }
+
+    /* BOTÓN ADMISIÓN NAVBAR */
+    .btn-nav-admission {
+      background-color: var(--primary-color) !important;
+      color: #ffffff !important;
+      border-radius: 20px !important;
+      padding: 8px 20px !important;
+      box-shadow: 0 2px 8px rgba(0, 140, 214, 0.3);
+    }
+    .btn-nav-admission:hover {
+      background-color: var(--primary-dark) !important;
+    }
+
+    /* Estilos para el botón hamburguesa (fuera del media query) */
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+      padding: 5px 10px;
+    }
+
+    /* CARRUSEL SLIDER PRINCIPAL */
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      overflow: hidden;
+      background-color: #000;
+    }
+    .slide-track {
+      display: flex;
+      width: 400%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .slide {
+      width: 25%;
+      height: 100%;
+      position: relative;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.72);
+    }
+    .slide-caption {
+      position: absolute;
+      bottom: 60px;
+      left: 8%;
+      right: 8%;
+      max-width: 750px;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .slide-caption h2 {
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .slide-caption p {
+      font-size: 1.15rem;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    /* Botones de Navegación Slider */
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(4px);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      z-index: 10;
+    }
+    .slider-btn:hover {
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--secondary-color);
+    }
+    .prev-btn { left: 20px; }
+    .next-btn { right: 20px; }
+
+    /* Indicadores de Dots */
+    .slider-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .dot.active {
+      background: var(--primary-color);
+      width: 28px;
+      border-radius: 10px;
+    }
+
+    /* CONTENEDOR GENERAL DE SECCIONES */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+    .section-title h2 {
+      font-size: 2rem;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 12px;
+    }
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background-color: var(--primary-color);
+      border-radius: 2px;
+    }
+    .section-title p {
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+
+    /* SECCIÓN NUESTRAS ORIENTACIONES DE SECUNDARIA */
+    .orientaciones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .orientacion-card {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .orientacion-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .orientacion-header {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+    }
+    .orientacion-header.humanidades {
+      background-color: var(--secondary-color);
+    }
+    .orientacion-header i {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .orientacion-header h3 {
+      color: #ffffff;
+      font-size: 1.4rem;
+    }
+    .orientacion-body {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .orientacion-body ul {
+      list-style: none;
+      margin: 15px 0 25px 0;
+    }
+    .orientacion-body li {
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border-color);
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .orientacion-body li i {
+      color: var(--primary-color);
+      font-size: 0.85rem;
+    }
+
+    /* SECCIÓN ESPECIAL PROMO 2026 INFORMATICA / ALUMNO SALIENTE */
+    .promo-section {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin-top: 50px;
+      border: 1px solid var(--border-color);
+    }
+    .promo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    .promo-img-box {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      position: relative;
+    }
+    .promo-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .promo-content {
+      padding: 40px;
+    }
+    .badge-promo {
+      display: inline-block;
+      background: #e0f2fe;
+      color: var(--primary-color);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+    .promo-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: var(--secondary-color);
+    }
+    .promo-content p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    /* BOTONES */
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      text-align: center;
+    }
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+    .btn-outline:hover {
+      background-color: var(--primary-color);
+      color: #ffffff;
+    }
+
+    /* BLOQUE UBICACIÓN Y CONTACTO CENTRADO */
+    .contact-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 45px 30px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+    .contact-wrapper h3 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      color: var(--secondary-color);
+    }
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    .contact-item i {
+      width: 50px;
+      height: 50px;
+      background: #e0f2fe;
+      color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+    .contact-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+    .contact-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* FOOTER INSTITUCIONAL */
+    footer {
+      background-color: var(--secondary-color);
+      color: #cbd5e1;
+      padding: 40px 0 20px 0;
+      margin-top: 60px;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .footer-brand {
+      margin-bottom: 20px;
+    }
+    .footer-brand h4 {
+      color: #ffffff;
+      font-size: 1.3rem;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+    .copyright {
+      border-top: 1px solid #334155;
+      padding-top: 20px;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    /* RESPONSIVE DESIGN (CELULARES < 900PX) */
+    @media (max-width: 900px) {
+      /* Reduce un 10% el tamaño general en celulares */
+      body {
+        transform: scale(0.9);
+        transform-origin: top left;
+        width: 111.11%; /* Compensa el escalado para evitar espacios en blanco al costado */
+      }
+
+      /* Clases para ocultar el encabezado al hacer scroll hacia abajo */
+      .hide-header .top-bar {
+        transform: translateY(-100%);
+      }
+      .hide-header header {
+        transform: translateY(-100%);
+      }
+
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px 20px;
+      }
+      
+      .logo-brand {
+        display: flex; /* Visible al inicio arriba del todo */
+      }
+      .logo-brand img {
+        height: 40px;
+      }
+      .brand-text h1 {
+        font-size: 1.1rem;
+      }
+
+      .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+      }
+
+      /* Oculta el menú por defecto en celulares */
+      .nav-list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+        padding: 15px 0;
+        border-top: 1px solid var(--border-color);
+        z-index: 1000;
+      }
+
+      .nav-list.active {
+        display: flex;
+      }
+
+      .nav-list li {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-list a {
+        padding: 12px 20px;
+      }
+
+      .dropdown {
+        position: static;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        background: #f8fafc;
+      }
+      
+      nav li:hover .dropdown {
+        display: block;
+      }
+
+      .promo-grid {
+        grid-template-columns: 1fr;
+      }
+      .promo-img-box {
+        min-height: 260px;
+      }
+      .hero-slider {
+        height: 380px;
+      }
+      .slide-caption h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <div class="top-bar">
+    <div class="top-bar-container">
+      <div class="top-info">
+        <span><i class="fa-solid fa-location-dot"></i>Calle Pergamino 1243, Oberá, Misiones - Argentina</span>
+        <span><i class="fa-solid fa-phone"></i> (03755) 42-1234</span>
+      </div>
+      <div class="top-info">
+        <span><i class="fa-regular fa-clock"></i> Lunes a Viernes: 07:00 - 17:30 hs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENCABEZADO Y NAVEGACIÓN ESTILO LINNEO -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo-brand">
+        <img src="https://media.discordapp.net/attachments/1104625402531561534/1562417264106668073/image0.jpg?ex=6adf2ff8&is=6addde78&hm=a55de4f92dd86e4e0230c73e75b29ecb05e5669c6ccba9d194c02a9016d78a04&=&format=webp" alt="Logo Aldeas Argentina Oberá">
+        <div class="brand-text">
+          <h1>INSTITUTO PRIVADO ALDEAS ARGENTINA</h1>
+        </div>
+      </a>
+
+      <nav>
+        <!-- Botón Hamburguesa para Celulares -->
+        <div class="menu-toggle" id="mobile-menu">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <ul class="nav-list" id="navMenu">
+          <li><a href="#">Inicio</a></li>
+          <li>
+            <a href="#">Institucional <i class="fa-solid fa-chevron-down" style="font-size:0.7rem; margin-left:4px;"></i></a>
+            <div class="dropdown">
+              <a href="https://www.aldeasinfantiles.org.ar/nuestro-trabajo/programas/educacion" target="_blank">Nuestra Historia</a>
+              <a href="#ideario">Ideario Pedagógico</a>
+              <a href="#autoridades">Autoridades</a>
+            </div>
+          </li>
+          <li>
+            <a href="#">Oferta Educativa <i class="fa-solid fa-chevron-down" style="font-size:0.7rem; margin-left:4px;"></i></a>
+            <div class="dropdown">
+              <a href="#ninicial">Nivel Inicial </a>
+              <a href="#nprimario">Nivel Primario </a>
+              <a href="#orientaciones">Nivel Secundario </a>
+            </div>
+          </li>
+          <li><a href="#salientes">Alumnos Salientes</a></li>
+          <li><a href="#contacto">Ubicación</a></li>
+          <li><a href="/inscripciones" class="btn-nav-admission">Inscripciones</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CARRUSEL SLIDER DESLIZABLE -->
+  <section class="hero-slider">
+    <div class="slide-track" id="slideTrack">
+      <!-- Slide 1: Banner Principal -->
+      <div class="slide">
+        <img src="https://media.discordapp.net/attachments/1104625402531561534/1562831714206748842/obera-1667x450.png?ex=6adf6074&is=6ade0ef4&hm=e80b0ff3ddb1bdf7c44b32375cf19c63930c0285b00b89cb22402aadf401f8c2&=&format=webp&quality=lossless" alt="Banner Instituto Hermann Gmeiner Oberá">
+        <div class="slide-caption">
+          <h2>Educación Técnica y Humana de Excelencia</h2>
+          <p>Formando a las futuras generaciones de Oberá con valores, innovación académica e inclusión comunitaria.</p>
+          <a href="#ninicial" class="btn btn-primary">Conocer Oferta Educativa</a>
+        </div>
+      </div>
+      <!-- Slide 2: Promo 2026 -->
+      <div class="slide">
+        <img src="https://media.discordapp.net/attachments/1104625402531561534/1560620098082050048/image.jpg?ex=6adf3dba&is=6addec3a&hm=359bbdab8803e6fe2f8afda6a058f177d0e69fa380b452dc71f066da18f38974&=&format=webp&width=1536&height=864" alt="Promo 2026 Informática Oberá">
+        <div class="slide-caption">
+          <h2>Promo 2026 - Bachillerato en Informática</h2>
+          <p>Alumnos capacitados en programación, lógica de desarrollo y tecnologías de la información.</p>
+          <a href="#salientes" class="btn btn-primary">Ver Alumnos Salientes</a>
+        </div>
+      </div>
+	  
+	 <!-- Slide 3: Promo 2026 humanidades-->
+      <div class="slide" style="overflow: visible;">
+        <img src="https://media.discordapp.net/attachments/1104625402531561534/1562865329049444542/Diseno_sin_titulo_3.png?ex=6adf7fc3&is=6ade2e43&hm=06092278fb17f97098d7fcfe5a23a6b5300a44c4a896a52a7298d3b4184c105c&=&format=webp&quality=lossless&width=640&height=360" alt="Promo 2026 Humanidades Oberá" style="transform: translateY(-40px); height: calc(100% + 40px); object-fit: cover;">
+		<div class="slide-caption">
+          <h2>Promo 2026 - Bachillerato en Humanidades</h2>
+          <p>Alumnos capacitados en actividades socioeconomicas, psicologicas y con conciencia social.</p>
+          <a href="#salientes" class="btn btn-primary">Ver Alumnos Salientes</a>
+        </div>
+      </div>
+	  
+      <!-- Slide 4: Identidad Institucional -->
+      <div class="slide">
+        <img src="https://www.aldeasinfantiles.org.ar/getmedia/575e109c-d2d1-41d6-ba0b-1f4de0c2ffb9/WhatsApp-Image-2021-08-03-at-08-44-38-(84).jpeg?width=1275&height=750&ext=.jpeg" alt="Comunidad Educativa Aldeas Argentina">
+        <div class="slide-caption">
+          <h2>Compromiso Social y Crecimiento Académico</h2>
+          <p>Un espacio de aprendizaje inclusivo en el corazón de Misiones.</p>
+          <a href="#contacto" class="btn btn-outline" style="color:#fff; border-color:#fff;">Contactar Secretaría</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones Anterior y Siguiente -->
+    <button class="slider-btn prev-btn" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="slider-btn next-btn" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+
+    <!-- Indicadores -->
+    <div class="slider-dots">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+	  <span class="dot" data-index="3"></span>
+    </div>
+  </section>
+
+  <!-- EDAYO -->
+  <section class="container" id="ideario">
+    <div class="section-title">
+      <h2>Equipo de Apoyo y Orientación Escolar (EdAyO)</h2>
+      <p> En el Instituto Privado Aldeas Argentina, entendemos la educación como un proceso donde cada estudiante necesita ser escuchado, valorado y acompañado. El EdAyO es un espacio de trabajo continuo dentro de la escuela que busca garantizar que todos los chicos y chicas puedan transitar su escolaridad de la mejor manera posible, contemplando sus realidades, ritmos y necesidades.
+      Adaptándonos a las normativas educativas provinciales y nacionales de inclusión (Res. SPEPM N° 07/22 y Res. CFE N° 239/14), transformamos la antigua estructura del DAE para consolidar un equipo más activo, cercano e integrado a la dinámica diaria de la institución.</p>
+      <h3>¿Cómo trabajamos?</h3>
+      <p>El equipo está conformado por profesionales y educadores de distintas áreas —Psicopedagogía, Psicología, Trabajo Social y Docencia— que aportan miradas complementarias para abordar las situaciones de manera integral. Trabajamos en tres ejes fundamentales:</p>
+      <ul>
+        <li><i class="fa-solid fa-check"></i> Con los estudiantes: Ofreciendo contención, orientación y herramientas para resolver dificultades de aprendizaje, favorecer su autonomía y ayudarlos a proyectar su futuro.</li>
+        <li><i class="fa-solid fa-check"></i> Con la comunidad educativa: Asesorando y colaborando a la par de docentes y directivos para construir aulas más inclusivas y mejorar la convivencia escolar.</li>
+        <li><i class="fa-solid fa-check"></i> Con el entorno y la familia: Promoviendo la corresponsabilidad y articulando acciones con organismos externos (en cumplimiento de la Ley 26.061 de Protección Integral de Derechos) para cuidar el bienestar de niñas, niños y adolescentes.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECCIÓN ORIENTACIONES EDUCATIVAS -->
+  <!-- Nivel Inicial -->
+  <section class="container" id="ninicial">
+    <div class="section-title">
+      <h2>Nivel Inicial</h2>
+      <p>Los alumnos de nivel inicial de la institución</p>
+    </div>
+  
+    <div class="orientacion-card"> 
+      <div class="orientacion-header" style="background-color: #e83e8c;">
+        <img src="https://media.discordapp.net/attachments/1104625402531561534/1562836896608944159/Diseno_sin_titulo_1.png?ex=6adf6548&is=6ade13c8&hm=48bf080d6ddf8577d269713d49628e74264a7c8a76893ce69ddae64b471e8863&=&format=webp&quality=lossless&width=1024&height=1024" alt="inicial" width="50">
+        <h3>Nivel Inicial</h3>
+      </div>
+      <div class="orientacion-body">
+        <p>Aquí los estudiantes aprenden lo siguiente:</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Desarrollo Sociopersonal</li>
+          <li><i class="fa-solid fa-check"></i> Educación de primer nivel</li>
+          <li><i class="fa-solid fa-check"></i> Trabajar en equipo</li>
+          <li><i class="fa-solid fa-check"></i> Identificar limites y libertades</li>
+          <li><i class="fa-solid fa-check"></i> Crecer en sociedad</li>
+        </ul>
+        <a href="#salientes" class="btn btn-outline">Ver Alumnos y Proyectos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nivel Primario -->
+  <section class="container" id="nprimario">
+    <div class="section-title">
+      <h2>Nivel Primario</h2>
+      <p>Los alumnos de nivel primario de la institución</p>
+    </div>
+  
+    <div class="orientacion-card"> 
+      <div class="orientacion-header" style="background-color: #34bbe9;">
+        <img src="https://media.discordapp.net/attachments/1104625402531561534/1562841444731986042/Diseno_sin_titulo_2.png?ex=6adf6984&is=6ade1804&hm=c91b844145e72d03a1a330cc55c3d807b73c4f377e79c900fe95f57e03598e92&=&format=webp&quality=lossless&width=384&height=384" alt="primaria" width="50">
+        <h3>Nivel Primario</h3>
+      </div>
+      <div class="orientacion-body">
+        <p>Aquí los estudiantes aprenden lo siguiente:</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Desarrollo Sociopersonal</li>
+          <li><i class="fa-solid fa-check"></i> Educación de primer nivel</li>
+          <li><i class="fa-solid fa-check"></i> Trabajar en equipo</li>
+          <li><i class="fa-solid fa-check"></i> Identificar limites y libertades</li>
+          <li><i class="fa-solid fa-check"></i> Crecer en sociedad</li>
+        </ul>
+        <a href="#salientes" class="btn btn-outline">Ver Alumnos y Proyectos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nivel Secundario -->
+  <section class="container" id="orientaciones">
+    <div class="section-title">
+      <h2>Nivel Secundario</h2>
+      <p>En nuestra institución, tenemos dos orientaciones</p>
+    </div>
+
+    <div class="orientaciones-grid">
+      <!-- Orientación 1: Informática -->
+      <div class="orientacion-card">
+        <div class="orientacion-header">
+          <i class="fa-solid fa-laptop-code"></i>
+          <h3>Bachillerato en Informática</h3>
+        </div>
+        <div class="orientacion-body">
+          <p>Formación técnica centrada en el desarrollo de software, pensamiento computacional y soporte técnico integral.</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Programación I y II (Algoritmos y Estructuras)</li>
+            <li><i class="fa-solid fa-check"></i> Desarrollo Web y Front-End</li>
+            <li><i class="fa-solid fa-check"></i> Bases de Datos Relacionales</li>
+            <li><i class="fa-solid fa-check"></i> Mantenimiento Preventivo a dispositivos</li>
+            <li><i class="fa-solid fa-check"></i> Sistemas Operativos y Redes</li>
+          </ul>
+          <a href="#salientes" class="btn btn-outline">Ver Alumnos y Proyectos</a>
+        </div>
+      </div>
+
+      <!-- Orientación 2: Humanidades -->
+      <div class="orientacion-card">
+        <div class="orientacion-header humanidades">
+          <i class="fa-solid fa-book-open-reader"></i>
+          <h3>Bachillerato en Humanidades</h3>
+        </div>
+        <div class="orientacion-body">
+          <p>Orientación con fuerte impronta social, análisis crítico, pensamiento filosófico e investigación literaria.</p>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Sociología y Psicología Aplicada</li>
+            <li><i class="fa-solid fa-check"></i> Literatura Regional e Hispanoamericana</li>
+            <li><i class="fa-solid fa-check"></i> Metodología de la Investigación Social</li>
+            <li><i class="fa-solid fa-check"></i> Filosofía y Ética Ciudadana</li>
+            <li><i class="fa-solid fa-check"></i> Proyectos de Intervención Comunitaria</li>
+          </ul>
+          <a href="#contacto" class="btn btn-outline">Más Información</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN ALUMNOS SALIENTES / PROMO 2026 -->
+  <section class="container" id="salientes" style="padding-top:0;">
+    <div class="section-title">
+      <h2>Alumnos Salientes</h2>
+      <p>Reconocimiento a nuestros estudiantes próximos a graduarse</p>
+    </div>
+
+    <div class="promo-section">
+      <div class="promo-grid">
+        <div class="promo-img-box">
+          <img src="https://media.discordapp.net/attachments/1104625402531561534/1562867667998867607/IMG_3600.png?ex=6adb8d70&is=6ada3bf0&hm=ab896c4af6f3ff16976482488efc2570bbe5f082d856aff6d328dd5329da6a27&=&format=webp&quality=lossless&width=1536&height=864" alt="Promo Primaria">
+        </div>
+        <div class="promo-content">
+          <span class="badge-promo">Promo 26 • Primaria</span>
+          <h3>¡Felicidades estudiantes!</h3>
+          <p>Felicitamos a la camada de egresados de nivel primario por este gran logro en su recorrido escolar.</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="promo-section">
+      <div class="promo-grid">
+        <div class="promo-img-box">
+          <img src="https://media.discordapp.net/attachments/1104625402531561534/1562867667998867607/IMG_3600.png?ex=6adf81f0&is=6ade3070&hm=d49d2d259eeb2fc7a99e70a19cb99d3d3c7c646816054b962ea564c2b47a4037&=&format=webp&quality=lossless&width=1536&height=864" alt="Promo Informática" style="object-position: 30% center;">
+        </div>
+        <div class="promo-content">
+          <span class="badge-promo">Secundaria | Promo 26 • Orientación Informática</span>
+          <h3>¡Felicidades estudiantes!</h3>
+          <p>Felicitamos a la camada de egresados de la orientación en Informática. A lo largo de su trayectoria académica han adquirido competencias clave en resolución de problemas, desarrollo de sistemas y trabajo colaborativo.</p>
+          <p><strong>Especializaciones del plan de estudios:</strong> Programación, Desarrollo Web, Bases de Datos, Redes y Mantenimiento de Hardware.</p>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="promo-section">
+      <div class="promo-grid">
+        <div class="promo-img-box">
+          <img src="https://media.discordapp.net/attachments/1104625402531561534/1562865329049444542/Diseno_sin_titulo_3.png?ex=6adf7fc3&is=6ade2e43&hm=06092278fb17f97098d7fcfe5a23a6b5300a44c4a896a52a7298d3b4184c105c&=&format=webp&quality=lossless&width=640&height=360" alt="Promo Humanidades">
+        </div>
+        <div class="promo-content">
+          <span class="badge-promo">Secundaria | Promo 26 • Orientación en humanidades</span>
+          <h3>¡Felicidades estudiantes!</h3>
+          <p>Felicitamos los estudiantes del Bachillerato en Humanidades, gracias por su compromiso con la institución y su colaboración con la sociedad oberena en sus tareas.</p>
+          <p><strong>Especializaciones del plan de estudios:</strong> Sociología y Psicología Aplicada, Literatura Regional e Hispanoamericana, Metodología de la Investigación Social, Filosofía y Ética Ciudadana y Proyectos de Intervención Comunitaria.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UBICACIÓN Y CONTACTO CENTRADO -->
+  <section class="container" id="contacto">
+    <div class="contact-wrapper">
+      <h3>Ubicación e Informes</h3>
+      
+      <div class="contact-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <h4>Dirección Institucional</h4>
+        <p>Calle Pergamino 1243, Oberá, Misiones</p>
+      </div>
+
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <h4>Atención Telefónica</h4>
+        <p>(03755) 42-1234 / 42-5678</p>
+      </div>
+
+      <div class="contact-item">
+        <i class="fa-regular fa-clock"></i>
+        <h4>Horarios de Secretaría</h4>
+        <p>Lunes a Viernes de 07:00 a 12:00 hs y 13:30 a 17:30 hs</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER INSTITUCIONAL -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h4>Instituto Privado Aldeas Argentina</h4>
+        <p style="font-size: 0.85rem; margin-top: 5px;">Pergamino 1243, Oberá, Misiones, Argentina</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Inicio</a>
+        <a href="#ninicial">Oferta Educativa</a>
+        <a href="#salientes">Alumnos Salientes</a>
+        <a href="#contacto">Ubicación</a>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2026 Aldeas Argentina. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT PARA EL CARRUSEL, MENÚ Y SCROLL DINÁMICO -->
+  <script>
+    const slideTrack = document.getElementById('slideTrack');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    let currentIndex = 0;
+    const totalSlides = 4;
+
+    function updateSlider(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      
+      currentIndex = index;
+      slideTrack.style.transform = `translateX(-${currentIndex * (100 / totalSlides)}%)`;
+      
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    prevBtn.addEventListener('click', () => updateSlider(currentIndex - 1));
+    nextBtn.addEventListener('click', () => updateSlider(currentIndex + 1));
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        const idx = parseInt(e.target.getAttribute('data-index'));
+        updateSlider(idx);
+      });
+    });
+
+    // Avance automático cada 6 segundos
+    setInterval(() => {
+      updateSlider(currentIndex + 1);
+    }, 6000);
+
+    // Código para el menú desplegable en celulares
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileMenu.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      
+      const icon = mobileMenu.querySelector('i');
+      if (navMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      } else {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Script para ocultar/mostrar el encabezado en celulares al hacer scroll
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth <= 900) {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        if (currentScroll > lastScrollTop && currentScroll > 50) {
+          // Bajando: oculta el encabezado
+          document.body.classList.add('hide-header');
+        } else {
+          // Subiendo: muestra el encabezado
+          document.body.classList.remove('hide-header');
+        }
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+      }
+    });
+  </script>
+</body>
+</html>

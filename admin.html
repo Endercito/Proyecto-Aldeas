@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Control - Secretaría</title>
+  <style>
+    body { font-family: sans-serif; margin: 30px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 40px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background: #2c3e50; color: white; }
+    .box { background: #f0f7ff; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Panel de Administración Institucional</h1>
+
+  <!-- Configuración de Cupos por Nivel -->
+  <div class="box">
+    <h3>Modificar Cupo Máximo por Nivel (Directivos)</h3>
+    <form method="POST">
+      <label>Seleccionar Nivel:</label>
+      <select name="nivel" required style="padding: 8px; margin-right: 10px;">
+        {% for row in config_niveles %}
+        <option value="{{ row[0] }}">{{ row[0] }} (Actual máx: {{ row[1] }})</option>
+        {% endfor %}
+      </select>
+      
+      <label>Nuevo Límite:</label>
+      <input type="number" name="cupo_maximo" required style="padding: 8px; width: 100px; margin-right: 10px;">
+      
+      <button type="submit" style="padding: 8px 15px;">Actualizar Cupo</button>
+    </form>
+  </div>
+
+  <!-- Estado actual de los cupos -->
+  <h3>Resumen de Cupos por Nivel</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Nivel / Taller</th>
+        <th>Cupo Máximo Configurado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in config_niveles %}
+      <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Lista de Preinscriptos -->
+  <h3>Lista de Preinscriptos (Secretaría)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Fecha</th>
+        <th>Alumno</th>
+        <th>Tutor</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Nivel Seleccionado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for elem in lista %}
+      <tr>
+        <td>{{ elem[0] }}</td>
+        <td>{{ elem[6] }}</td>
+        <td>{{ elem[1] }}</td>
+        <td>{{ elem[2] }}</td>
+        <td>{{ elem[3] }}</td>
+        <td>{{ elem[4] }}</td>
+        <td><strong>{{ elem[5] }}</strong></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</body>
+</html>
