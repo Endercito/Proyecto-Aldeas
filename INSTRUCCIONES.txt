@@ -1,0 +1,42 @@
+PROYECTO ALDEAS ARGENTINA - VERSION CORREGIDA
+
+ARCHIVOS MODIFICADOS
+- app.py: rutas, base de datos, formulario de preinscripcion, cupos, administracion y arranque con Gunicorn.
+- templates/inscripciones.html: ahora es el formulario publico de preinscripcion.
+- templates/index.html: corrige nombres de imagenes y un elemento mal anidado del menu.
+- Procfile: corrige el comando de inicio de Gunicorn.
+- requirements.txt: declara versiones compatibles de Flask y Gunicorn.
+
+ARCHIVOS CONSERVADOS
+- templates/admin.html: se conserva el panel de administracion y sus herramientas.
+- static/: se conservan las imagenes originales.
+- inscripciones.db: se conserva la base de datos que venia en el ZIP. No se borraron registros.
+
+PARA INSTALAR Y EJECUTAR LOCALMENTE
+1. Descomprimir esta carpeta.
+2. Abrir una terminal dentro de la carpeta del proyecto.
+3. Crear un entorno virtual (opcional pero recomendado):
+   python -m venv venv
+4. Activarlo en Windows:
+   venv\\Scripts\\activate
+5. Instalar dependencias:
+   pip install -r requirements.txt
+6. Ejecutar:
+   python app.py
+7. Abrir:
+   http://127.0.0.1:5000
+
+RUTAS
+- Sitio publico: /
+- Formulario de preinscripcion: /inscripciones
+- Panel administrativo: /admin
+
+IMPORTANTE SOBRE SEGURIDAD
+- El proyecto conserva el usuario inicial "secretaria" y la clave inicial "aldeas2026" si ese usuario no existe ya en la base de datos. Cambiar esa clave antes de publicar.
+- En el hosting configurar una variable SECRET_KEY con una clave larga, aleatoria y privada.
+- Si el sitio funciona bajo HTTPS, configurar COOKIE_SECURE=1.
+- Al iniciar sesion correctamente, las contrasenas antiguas en texto plano se convierten a hash automaticamente.
+- No subir ni compartir publicamente la base de datos si contiene datos personales.
+
+IMPORTANTE SOBRE EL ALCANCE
+La base de datos original contiene tablas adicionales llamadas profesores, materias e inasistencias. En el app.py recibido no existen rutas ni pantallas que gestionen esas tablas, por eso no invente ni implemente ese modulo. Las funciones que sí estaban conectadas al panel (preinscripciones, cupos, alumnos y acumulados de asistencia) se conservaron.
