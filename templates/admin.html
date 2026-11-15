@@ -86,13 +86,13 @@
 </head>
 <body>
 
-  {% if login_requerido %}
+ {% if login_requerido %}
     <!-- Slider Deslizante de Fondo para el Login -->
     <div class="bg-slider-container">
       <div id="bgTrack" class="bg-slider-track">
-        <div class="bg-slide" style="background-image: url('https://www.aldeasinfantiles.org.ar/getmedia/9d2a58c2-5515-4d30-a4c6-40517ca6ce63/nuestra-historia-1667x450.jpg?width=1920');"></div>
-        <div class="bg-slide" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJQ567XYGgZfiSyg9P3WOCygSGIBZ7Ey8gvTZg2UAbVizwXP24PRIssS8&s=10');"></div>
-        <div class="bg-slide" style="background-image: url('https://www.aldeasinfantiles.org.ar/getmedia/9f79e477-2262-4543-b41a-7aa53875f846/Obe1');"></div>
+        <div class="bg-slide" style="background-image: url('{{ url_for('static', filename='fondo1.jpg') }}');"></div>
+        <div class="bg-slide" style="background-image: url('{{ url_for('static', filename='fondo2.jpg') }}');"></div>
+        <div class="bg-slide" style="background-image: url('{{ url_for('static', filename='fondo3.jpg') }}');"></div>
       </div>
     </div>
     <div class="bg-overlay"></div>
@@ -133,17 +133,17 @@
     </div>
     <div class="bg-overlay"></div>
 
-    <div>
-      <a href="/admin/logout" class="btn-logout">Cerrar Sesión</a>
-      <div class="header-flex">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKI3A3GsosqBeYKg5epe08s9Jk5rjqKbI5pEAR0fsQK2J0MRwQBBgO8o&s=10" alt="Logo Colegio">
-        <div>
-          <h1 style="margin: 0; font-size: 24px;">Panel de Administración</h1>
-          <p style="margin: 3px 0 0 0; color: rgba(255,255,255,0.8); font-size: 14px;">Instituto Privado Aldeas Argentina</p>
-        </div>
+   <div>
+    <a href="/admin/logout" class="btn-logout">Cerrar Sesión</a>
+    <div class="header-flex">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Colegio">
+      <div>
+        <h1 style="margin: 0; font-size: 24px;">Panel de Administración</h1>
+        <p style="margin: 3px 0 0 0; color: rgba(255,255,255,0.8); font-size: 14px;">Instituto Privado Aldeas Argentina</p>
       </div>
     </div>
-    <div style="clear: both;"></div>
+  </div>
+  <div style="clear: both;"></div>
 
     <!-- Registrar Alumno con Curso (1ro a 5to) y Divisiones (A o B) -->
     <div class="glass-container" style="background: rgba(254, 243, 199, 0.9);">
