@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preinscripciones - Instituto Privado Aldeas Argentina</title>
+  <!-- Importar tipografía Montserrat unificada -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      /* Fondo con imagen institucional y capa oscura para resaltar el efecto cristal */
+      background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(44, 62, 80, 0.7)), 
+                  url('https://www.aldeasinfantiles.org.ar/getmedia/9d2a58c2-5515-4d30-a4c6-40517ca6ce63/nuestra-historia-1667x450.jpg?width=1920') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    /* Contenedor principal con efecto Liquid Glass */
+    .card {
+      width: 100%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 24px;
+      padding: 35px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-flex {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding-bottom: 15px;
+    }
+
+    /* Logo rectangular institucional */
+    .header-flex img {
+      height: 45px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 4px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      color: #2c3e50;
+      font-weight: 700;
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .subtitulo-instituto {
+      font-size: 13px;
+      color: #666;
+      margin: 3px 0 0 0;
+    }
+
+    .contador-box {
+      text-align: center;
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(52, 152, 219, 0.12);
+      border: 1px solid rgba(52, 152, 219, 0.3);
+      border-radius: 14px;
+      font-weight: 600;
+      color: #2c3e50;
+      font-size: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #444;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccd1d9;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.9);
+      font-family: 'Montserrat', sans-serif;
+      box-sizing: border-box;
+      outline: none;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+
+    input:focus, select:focus {
+      border-color: #3498db;
+      box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+    }
+
+    .btn:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .alerta-cerrado {
+      display: none;
+      background: rgba(254, 226, 226, 0.9);
+      color: #991b1b;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 20px;
+      border: 1px solid rgba(153, 27, 27, 0.2);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="header-flex">
+      <!-- Mismo logo rectangular institucional -->
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuKI3A3GsosqBeYKg5epe08s9Jk5rjqKbI5pEAR0fsQK2J0MRwQBBgO8o&s=10" alt="Logo Colegio">
+      <div>
+        <h2>Preinscripciones 2026</h2>
+        <p class="subtitulo-instituto">Instituto Privado Aldeas Argentina.</p>
+      </div>
+    </div>
+    
+    <div id="alertaCerrado" class="alerta-cerrado">
+      ¡Cupos agotados para este nivel! Las preinscripciones se encuentran cerradas.
+    </div>
+
+    <div class="form-group">
+      <label>Seleccione el Nivel o Taller:</label>
+      <select id="selectNivel" name="nivel" required>
+        <option value="Inicial">Nivel Inicial</option>
+        <option value="Primario">Nivel Primario</option>
+        <option value="Secundario">Nivel Secundario</option>
+        <option value="Talleres Extracurriculares">Talleres Extracurriculares</option>
+      </select>
+    </div>
+
+    <div class="contador-box">
+      Cupos ocupados para este nivel: <span id="actuales">{{ actuales }}</span> / <span id="maximo">{{ maximo }}</span>
+    </div>
+
+    <form id="formPreinscripcion">
+      <!-- Campo oculto para enviar el nivel seleccionado en el form -->
+      <input type="hidden" id="inputNivelHidden" name="nivel" value="Inicial">
+
+      <div class="form-group">
+        <label>Nombre Completo del Alumno:</label>
+        <input type="text" name="nombre_alumno" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label>Nombre del Tutor / Responsable (no obligatorio si es mayor de edad):</label>
+        <input type="text" name="nombre_tutor" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label>Teléfono de Contacto:</label>
+        <input type="tel" name="telefono" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label>Correo Electrónico:</label>
+        <input type="email" name="email" required autocomplete="off">
+      </div>
+
+      <button type="submit" id="btnSubmit" class="btn" {% if alcanzado %}disabled{% endif %}>
+        Confirmar Preinscripción
+      </button>
+    </form>
+  </div>
+
+  <script>
+    const selectNivel = document.getElementById('selectNivel');
+    const inputNivelHidden = document.getElementById('inputNivelHidden');
+    const form = document.getElementById('formPreinscripcion');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const alerta = document.getElementById('alertaCerrado');
+
+    async function actualizarEstado() {
+      const nivelSeleccionado = selectNivel.value;
+      inputNivelHidden.value = nivelSeleccionado; // Sincroniza el hidden
+
+      const res = await fetch(`/api/estado-cupo/${encodeURIComponent(nivelSeleccionado)}`);
+      const data = await res.json();
+      
+      document.getElementById('actuales').textContent = data.actuales;
+      document.getElementById('maximo').textContent = data.maximo;
+
+      if (data.cupo_lleno) {
+        btnSubmit.disabled = true;
+        alerta.style.display = 'block';
+      } else {
+        btnSubmit.disabled = false;
+        alerta.style.display = 'none';
+      }
+    }
+
+    // Cada vez que cambie el selector, actualiza el contador de ese nivel
+    selectNivel.addEventListener('change', actualizarEstado);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      const res = await fetch('/preinscribir', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+      alert(data.mensaje);
+
+      if (res.ok) {
+        form.reset();
+        selectNivel.value = inputNivelHidden.value; // Mantiene la selección
+        actualizarEstado();
+      }
+    });
+
+    // Actualiza periódicamente
+    setInterval(actualizarEstado, 5000);
+  </script>
+</body>
+</html>
