@@ -233,6 +233,14 @@ def preinscribir():
             valores["email"],
             valores["nivel"]
         ))
+
+        # El cupo disponible se calcula nuevamente después de guardar.
+        cursor.execute(
+            "SELECT COUNT(*) FROM preinscripciones WHERE nivel = ?",
+            (valores["nivel"],)
+        )
+        nuevos_actuales = cursor.fetchone()[0]
+        disponibles = max(0, fila_nivel[0] - nuevos_actuales)
         conn.commit()
 
     except sqlite3.Error:
@@ -246,7 +254,12 @@ def preinscribir():
 
     return jsonify({
         "status": "success",
-        "mensaje": "Preinscripción recibida correctamente. La institución se pondrá en contacto."
+        "mensaje": "¡Preinscripción recibida correctamente! La institución se pondrá en contacto.",
+        "nivel": valores["nivel"],
+        "actuales": nuevos_actuales,
+        "maximo": fila_nivel[0],
+        "disponibles": disponibles,
+        "cupo_lleno": disponibles == 0
     })
 
 
