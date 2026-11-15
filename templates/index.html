@@ -680,7 +680,7 @@
               <a href="https://www.aldeasinfantiles.org.ar/nuestro-trabajo/programas/educacion" target="_blank">Nuestra Historia</a>
               <a href="#ideario">Ideario Pedagógico</a>
               <a href="#autoridades">Autoridades</a>
-              <a href="admin" class="btn" style="text-decoration: none; display: inline-block; text-align: center; background: #8e44ad; color: white; padding: 12px 20px; border-radius: 12px; font-weight: bold;">Gestion Administrativa</a>
+              <a href="{{ url_for('admin') }}" class="btn" style="text-decoration: none; display: inline-block; text-align: center; background: #8e44ad; color: white; padding: 12px 20px; border-radius: 12px; font-weight: bold;">Gestion Administrativa</a>
             </div>
           </li>
           <li>
@@ -693,7 +693,7 @@
           </li>
           <li><a href="#salientes">Alumnos Salientes</a></li>
           <li><a href="#contacto">Ubicación</a></li>
-          <li><a href="/inscripciones" class="btn-nav-admission">Inscripciones</a></li>
+          <li><a href="{{ url_for('inscripciones') }}" class="btn-nav-admission">Inscripciones</a></li>
         </ul>
       </nav>
     </div>
