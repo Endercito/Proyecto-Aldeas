@@ -3,187 +3,201 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preinscripciones | Instituto Privado Aldeas Argentina</title>
+  <meta name="theme-color" content="#2c3e50">
+  <title>Inscripciones | Instituto Privado Aldeas Argentina</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --azul: #087db5;
-      --azul-oscuro: #075985;
-      --texto: #263445;
-      --gris: #64748b;
-      --fondo: #f3f7fb;
-      --borde: #dbe4ee;
+      --primary: #008cd6;
+      --primary-dark: #006da8;
+      --secondary: #2c3e50;
+      --accent: #f39c12;
+      --text: #333;
+      --muted: #667085;
+      --line: #e2e8f0;
+      --shadow: 0 8px 24px rgba(0,0,0,.12);
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      padding: 30px 16px;
-      font-family: "Open Sans", sans-serif;
-      color: var(--texto);
-      background: linear-gradient(135deg, rgba(7,89,133,.88), rgba(15,23,42,.82)),
-        url("{{ url_for('static', filename='fondo1.jpg') }}") center/cover fixed;
-    }
-    .contenedor { width: 100%; max-width: 760px; margin: 0 auto; }
-    .encabezado { text-align: center; color: white; margin: 12px 0 24px; }
-    .encabezado img {
-      width: 86px; height: 86px; object-fit: contain;
-      background: white; border-radius: 18px; padding: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.18);
-    }
-    .encabezado h1 {
-      font: 800 clamp(1.35rem, 4vw, 2rem) Montserrat, sans-serif;
-      margin: 14px 0 6px;
-    }
-    .encabezado p { margin: 0; color: rgba(255,255,255,.88); }
-    .tarjeta {
-      background: white; border-radius: 20px; padding: clamp(22px, 5vw, 38px);
-      box-shadow: 0 18px 55px rgba(15,23,42,.22);
-    }
-    h2 { font: 700 1.45rem Montserrat, sans-serif; margin: 0 0 8px; }
-    .introduccion { color: var(--gris); margin: 0 0 24px; line-height: 1.6; }
-    .niveles {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
-      gap: 10px; margin-bottom: 24px;
-    }
-    .nivel {
-      border: 1px solid var(--borde); border-radius: 12px;
-      padding: 12px; background: #f8fafc;
-    }
-    .nivel strong { display: block; font: 700 .92rem Montserrat, sans-serif; }
-    .nivel span { color: var(--gris); font-size: .82rem; }
-    .campo { margin-bottom: 17px; }
-    label { display: block; font-weight: 600; margin-bottom: 7px; font-size: .92rem; }
-    input, select {
-      display: block; width: 100%; padding: 13px 14px; border: 1px solid var(--borde);
-      border-radius: 10px; font: 1rem "Open Sans", sans-serif; color: var(--texto);
-      background: white;
-    }
-    input:focus, select:focus { outline: 3px solid rgba(8,125,181,.15); border-color: var(--azul); }
-    .boton {
-      width: 100%; border: 0; border-radius: 10px; padding: 14px 18px;
-      background: var(--azul); color: white; font: 700 1rem Montserrat, sans-serif;
-      cursor: pointer; transition: background .2s, transform .2s;
-    }
-    .boton:hover { background: var(--azul-oscuro); transform: translateY(-1px); }
-    .boton:disabled { opacity: .6; cursor: not-allowed; transform: none; }
-    #mensaje { display: none; padding: 13px 15px; border-radius: 10px; margin: 0 0 18px; }
-    #mensaje.exito { display: block; color: #166534; background: #dcfce7; }
-    #mensaje.error { display: block; color: #991b1b; background: #fee2e2; }
-    .pie { text-align: center; color: rgba(255,255,255,.85); font-size: .88rem; margin-top: 20px; }
-    .volver { display: inline-block; color: white; margin-top: 13px; text-decoration: none; font-weight: 600; }
-    .volver:hover { text-decoration: underline; }
-    @media (max-width: 520px) { body { padding: 18px 12px; } .tarjeta { border-radius: 15px; } }
+    body { margin: 0; font-family: 'Open Sans', sans-serif; color: var(--text); background: #f8fafc; line-height: 1.6; }
+    .top-bar { background: var(--secondary); color: #fff; padding: 8px 5%; font-size: .82rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; }
+    .top-bar i { color: var(--primary); margin-right: 7px; }
+    header { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+    .header-container { width: min(1180px, 90%); margin: auto; min-height: 88px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .brand img { width: 58px; height: 58px; object-fit: contain; }
+    .brand h1 { margin: 0; color: var(--primary); font: 800 1.08rem Montserrat, sans-serif; line-height: 1.25; }
+    .brand small { display: block; color: var(--muted); font: 600 .68rem Montserrat, sans-serif; letter-spacing: .7px; }
+    .back-link { color: var(--secondary); text-decoration: none; font: 600 .9rem Montserrat, sans-serif; padding: 10px 16px; border-radius: 22px; }
+    .back-link:hover { color: var(--primary); background: #f0f7ff; }
+    .hero { min-height: 250px; padding: 54px 20px; display: grid; place-items: center; text-align: center; color: #fff; background: linear-gradient(90deg,rgba(20,43,63,.82),rgba(0,108,168,.68)), url("{{ url_for('static', filename='fondo2.jpg') }}") center/cover; }
+    .hero h2 { margin: 0 0 10px; font: 800 clamp(1.8rem,4vw,2.65rem) Montserrat, sans-serif; text-shadow: 0 2px 8px rgba(0,0,0,.25); }
+    .hero p { max-width: 720px; margin: 0 auto; font-size: 1.02rem; color: rgba(255,255,255,.94); }
+    main { width: min(1080px, 92%); margin: -30px auto 55px; position: relative; }
+    .panel { background: #fff; border-radius: 14px; box-shadow: var(--shadow); padding: clamp(22px,4vw,38px); }
+    .panel-heading { margin-bottom: 24px; }
+    .panel-heading h3 { margin: 0 0 5px; color: var(--secondary); font: 700 1.35rem Montserrat, sans-serif; }
+    .panel-heading p { margin: 0; color: var(--muted); }
+    .cupos-title { margin: 0 0 12px; color: var(--secondary); font: 700 .95rem Montserrat, sans-serif; }
+    .niveles { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-bottom: 28px; }
+    .nivel-card { border: 1px solid var(--line); border-top: 4px solid var(--primary); border-radius: 10px; padding: 15px; background: #fbfdff; min-width: 0; }
+    .nivel-card.agotado { border-top-color: #d64545; background: #fffafa; }
+    .nivel-card strong { display: block; color: var(--secondary); font: 700 .9rem Montserrat, sans-serif; min-height: 2.5em; }
+    .cantidad { display: block; margin-top: 7px; color: var(--primary-dark); font: 800 1.45rem Montserrat, sans-serif; }
+    .agotado .cantidad { color: #c0392b; font-size: 1rem; }
+    .nivel-card small { color: var(--muted); font-size: .78rem; }
+    .barra { height: 7px; border-radius: 10px; background: #e8eef4; overflow: hidden; margin-top: 10px; }
+    .barra span { display: block; height: 100%; background: var(--primary); border-radius: inherit; transition: width .3s ease; }
+    .agotado .barra span { background: #d64545; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 17px 20px; }
+    .campo { min-width: 0; }
+    .campo.completo { grid-column: 1/-1; }
+    label { display: block; margin-bottom: 7px; color: var(--secondary); font: 600 .88rem Montserrat, sans-serif; }
+    input, select { width: 100%; padding: 13px 14px; border: 1px solid #cfd8e3; border-radius: 7px; color: var(--text); background: #fff; font: 1rem 'Open Sans',sans-serif; }
+    input:focus, select:focus { outline: 3px solid rgba(0,140,214,.13); border-color: var(--primary); }
+    select:disabled { background: #f1f3f5; color: #98a2b3; cursor: not-allowed; }
+    .nota { color: var(--muted); font-size: .82rem; margin: 8px 0 0; }
+    .submit { width: 100%; margin-top: 22px; border: 0; border-radius: 25px; padding: 14px 20px; color: #fff; background: var(--primary); font: 700 .98rem Montserrat,sans-serif; cursor: pointer; transition: .2s; }
+    .submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .submit:disabled { opacity: .6; cursor: wait; transform: none; }
+    #mensaje { display: none; margin: 0 0 20px; padding: 14px 16px; border-radius: 8px; font-weight: 600; }
+    #mensaje.exito { display: block; color: #17663a; background: #e7f6ed; border: 1px solid #b8e2c7; }
+    #mensaje.error { display: block; color: #9f2525; background: #fff0f0; border: 1px solid #f0c2c2; }
+    .footer { padding: 25px 15px; text-align: center; color: #dbe5ed; background: var(--secondary); font-size: .85rem; }
+    .footer i { color: var(--accent); margin-right: 6px; }
+    @media(max-width:760px) { .niveles { grid-template-columns: repeat(2,minmax(0,1fr)); } .header-container { width: 92%; } }
+    @media(max-width:520px) { .top-bar { justify-content: center; text-align: center; } .header-container { min-height: 76px; } .brand img { width: 46px; height: 46px; } .brand h1 { font-size: .82rem; } .brand small { font-size: .58rem; } .back-link { font-size: .78rem; padding: 8px; } .hero { min-height: 210px; padding: 40px 18px; } .niveles { gap: 8px; } .nivel-card { padding: 11px; } .form-grid { grid-template-columns: 1fr; gap: 14px; } .campo.completo { grid-column: auto; } }
   </style>
 </head>
 <body>
-  <main class="contenedor">
-    <header class="encabezado">
-      <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo del Instituto">
-      <h1>Instituto Privado Aldeas Argentina</h1>
-      <p>Formulario de preinscripción</p>
-      <a class="volver" href="{{ url_for('inicio') }}">← Volver al sitio principal</a>
-    </header>
+  <div class="top-bar">
+    <span><i class="fa-solid fa-location-dot"></i>Calle Pergamino 1243, Oberá, Misiones - Argentina</span>
+    <span><i class="fa-regular fa-clock"></i>Lunes a Viernes: 07:00 - 17:30 hs</span>
+  </div>
+  <header>
+    <div class="header-container">
+      <a class="brand" href="{{ url_for('inicio') }}">
+        <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo del Instituto">
+        <div><h1>INSTITUTO PRIVADO<br>ALDEAS ARGENTINA</h1><small>EDUCACIÓN Y FORMACIÓN INTEGRAL</small></div>
+      </a>
+      <a class="back-link" href="{{ url_for('inicio') }}"><i class="fa-solid fa-arrow-left"></i> Volver al sitio</a>
+    </div>
+  </header>
+  <section class="hero">
+    <div><h2>Inscripciones abiertas</h2><p>Completá el formulario para solicitar una preinscripción. Los cupos disponibles se actualizan automáticamente.</p></div>
+  </section>
 
-    <section class="tarjeta">
-      <h2>Solicitá una preinscripción</h2>
-      <p class="introduccion">
-        Completá los datos solicitados. La preinscripción quedará registrada y la institución
-        podrá comunicarse con vos para continuar el proceso.
-      </p>
-
-      <div class="niveles" aria-label="Disponibilidad de cupos">
+  <main>
+    <section class="panel">
+      <div class="panel-heading"><h3><i class="fa-solid fa-clipboard-list" style="color:var(--primary)"></i> Formulario de preinscripción</h3><p>Ingresá los datos del alumno y de su responsable para iniciar el proceso.</p></div>
+      <h4 class="cupos-title">Disponibilidad de vacantes por nivel</h4>
+      <div class="niveles" id="niveles">
         {% for nivel, maximo, actuales in niveles %}
-          <div class="nivel">
+          {% set disponibles = [maximo - actuales, 0] | max %}
+          <div class="nivel-card {% if disponibles == 0 %}agotado{% endif %}" data-nivel="{{ nivel }}" data-maximo="{{ maximo }}">
             <strong>{{ nivel }}</strong>
-            {% if actuales >= maximo %}
-              <span>Cupos completos</span>
-            {% else %}
-              <span>{{ maximo - actuales }} cupos disponibles</span>
-            {% endif %}
+            <span class="cantidad">{% if disponibles == 0 %}Cupos agotados{% else %}{{ disponibles }}{% endif %}</span>
+            <small class="detalle-cupo">{% if disponibles == 0 %}No hay vacantes{% else %}vacantes disponibles{% endif %}</small>
+            <div class="barra"><span style="width:{{ (disponibles / maximo * 100) if maximo else 0 }}%"></span></div>
           </div>
         {% endfor %}
       </div>
 
       <div id="mensaje" role="status" aria-live="polite"></div>
-
       <form id="formulario-inscripcion" action="{{ url_for('preinscribir') }}" method="POST">
-        <div class="campo">
-          <label for="nombre_alumno">Nombre y apellido del alumno</label>
-          <input id="nombre_alumno" name="nombre_alumno" type="text" maxlength="120" required>
+        <div class="form-grid">
+          <div class="campo">
+            <label for="nombre_alumno">Nombre y apellido del alumno</label>
+            <input id="nombre_alumno" name="nombre_alumno" type="text" maxlength="120" autocomplete="name" required>
+          </div>
+          <div class="campo">
+            <label for="nombre_tutor">Nombre y apellido del padre, madre o tutor</label>
+            <input id="nombre_tutor" name="nombre_tutor" type="text" maxlength="120" required>
+          </div>
+          <div class="campo">
+            <label for="telefono">Teléfono de contacto</label>
+            <input id="telefono" name="telefono" type="tel" maxlength="40" required>
+          </div>
+          <div class="campo">
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" maxlength="150" required>
+          </div>
+          <div class="campo completo">
+            <label for="nivel">Nivel al que desea ingresar</label>
+            <select id="nivel" name="nivel" required>
+              <option value="">Seleccioná un nivel</option>
+              {% for nivel, maximo, actuales in niveles %}
+                <option value="{{ nivel }}" {% if actuales >= maximo %}disabled{% endif %}>{% if actuales >= maximo %}{{ nivel }} — sin vacantes{% else %}{{ nivel }} — {{ maximo - actuales }} vacantes{% endif %}</option>
+              {% endfor %}
+            </select>
+            <p class="nota" id="nota-cupo">Si un nivel llega a cero vacantes, dejará de estar disponible para nuevas preinscripciones.</p>
+          </div>
         </div>
-
-        <div class="campo">
-          <label for="nombre_tutor">Nombre y apellido del padre, madre o tutor</label>
-          <input id="nombre_tutor" name="nombre_tutor" type="text" maxlength="120" required>
-        </div>
-
-        <div class="campo">
-          <label for="telefono">Teléfono de contacto</label>
-          <input id="telefono" name="telefono" type="tel" maxlength="40" required>
-        </div>
-
-        <div class="campo">
-          <label for="email">Correo electrónico</label>
-          <input id="email" name="email" type="email" maxlength="150" required>
-        </div>
-
-        <div class="campo">
-          <label for="nivel">Nivel al que desea ingresar</label>
-          <select id="nivel" name="nivel" required>
-            <option value="">Seleccioná un nivel</option>
-            {% for nivel, maximo, actuales in niveles %}
-              <option value="{{ nivel }}" {% if actuales >= maximo %}disabled{% endif %}>
-                {{ nivel }}{% if actuales >= maximo %} — cupos completos{% endif %}
-              </option>
-            {% endfor %}
-          </select>
-        </div>
-
-        <button class="boton" id="enviar" type="submit">Enviar preinscripción</button>
+        <button class="submit" id="enviar" type="submit"><i class="fa-solid fa-paper-plane"></i> Enviar preinscripción</button>
       </form>
     </section>
-
-    <footer class="pie">
-      Calle Pergamino 1243 · Oberá, Misiones · Argentina
-    </footer>
   </main>
+  <footer class="footer"><i class="fa-solid fa-location-dot"></i>Calle Pergamino 1243 · Oberá, Misiones · Argentina</footer>
 
   <script>
-    const formulario = document.getElementById("formulario-inscripcion");
-    const mensaje = document.getElementById("mensaje");
-    const boton = document.getElementById("enviar");
+    const formulario = document.getElementById('formulario-inscripcion');
+    const mensaje = document.getElementById('mensaje');
+    const boton = document.getElementById('enviar');
+    const selectorNivel = document.getElementById('nivel');
 
-    formulario.addEventListener("submit", async (evento) => {
+    function actualizarCupo(datos) {
+      const tarjeta = document.querySelector(`[data-nivel="${CSS.escape(datos.nivel)}"]`);
+      const opcion = [...selectorNivel.options].find(o => o.value === datos.nivel);
+      const agotado = datos.disponibles <= 0;
+      if (tarjeta) {
+        tarjeta.classList.toggle('agotado', agotado);
+        tarjeta.querySelector('.cantidad').textContent = agotado ? 'Cupos agotados' : datos.disponibles;
+        tarjeta.querySelector('.detalle-cupo').textContent = agotado ? 'No hay vacantes' : 'vacantes disponibles';
+        tarjeta.querySelector('.barra span').style.width = `${datos.maximo ? (datos.disponibles / datos.maximo * 100) : 0}%`;
+      }
+      if (opcion) {
+        opcion.disabled = agotado;
+        opcion.textContent = agotado ? `${datos.nivel} — sin vacantes` : `${datos.nivel} — ${datos.disponibles} vacantes`;
+      }
+      if (agotado) {
+        mensaje.textContent = `En la categoría ${datos.nivel} ya no quedan vacantes. No es posible realizar más preinscripciones en ese nivel.`;
+        mensaje.className = 'error';
+      }
+    }
+
+    formulario.addEventListener('submit', async (evento) => {
       evento.preventDefault();
-      mensaje.className = "";
-      mensaje.textContent = "";
+      mensaje.className = '';
+      mensaje.textContent = '';
       boton.disabled = true;
-      boton.textContent = "Enviando...";
-
+      boton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
       try {
         const respuesta = await fetch(formulario.action, {
-          method: "POST",
+          method: 'POST',
           body: new FormData(formulario),
-          headers: { "Accept": "application/json" }
+          headers: { 'Accept': 'application/json' }
         });
         const resultado = await respuesta.json();
-
-        mensaje.textContent = resultado.mensaje || "No se pudo procesar la solicitud.";
-        mensaje.className = respuesta.ok ? "exito" : "error";
-
         if (respuesta.ok) {
+          actualizarCupo(resultado);
           formulario.reset();
-          mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
+          if (resultado.disponibles > 0) {
+            mensaje.textContent = `${resultado.mensaje} Quedan ${resultado.disponibles} vacantes en ${resultado.nivel}.`;
+            mensaje.className = 'exito';
+          }
+        } else {
+          mensaje.textContent = resultado.mensaje || 'No se pudo completar la preinscripción.';
+          mensaje.className = 'error';
         }
       } catch (error) {
-        mensaje.textContent = "No se pudo conectar con el servidor. Intentá nuevamente.";
-        mensaje.className = "error";
+        mensaje.textContent = 'No se pudo conectar con el servidor. Intentá nuevamente.';
+        mensaje.className = 'error';
       } finally {
         boton.disabled = false;
-        boton.textContent = "Enviar preinscripción";
+        boton.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar preinscripción';
+        mensaje.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
   </script>
