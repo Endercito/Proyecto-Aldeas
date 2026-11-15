@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preinscripciones | Instituto Privado Aldeas Argentina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul: #087db5;
+      --azul-oscuro: #075985;
+      --texto: #263445;
+      --gris: #64748b;
+      --fondo: #f3f7fb;
+      --borde: #dbe4ee;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 30px 16px;
+      font-family: "Open Sans", sans-serif;
+      color: var(--texto);
+      background: linear-gradient(135deg, rgba(7,89,133,.88), rgba(15,23,42,.82)),
+        url("{{ url_for('static', filename='fondo1.jpg') }}") center/cover fixed;
+    }
+    .contenedor { width: 100%; max-width: 760px; margin: 0 auto; }
+    .encabezado { text-align: center; color: white; margin: 12px 0 24px; }
+    .encabezado img {
+      width: 86px; height: 86px; object-fit: contain;
+      background: white; border-radius: 18px; padding: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    }
+    .encabezado h1 {
+      font: 800 clamp(1.35rem, 4vw, 2rem) Montserrat, sans-serif;
+      margin: 14px 0 6px;
+    }
+    .encabezado p { margin: 0; color: rgba(255,255,255,.88); }
+    .tarjeta {
+      background: white; border-radius: 20px; padding: clamp(22px, 5vw, 38px);
+      box-shadow: 0 18px 55px rgba(15,23,42,.22);
+    }
+    h2 { font: 700 1.45rem Montserrat, sans-serif; margin: 0 0 8px; }
+    .introduccion { color: var(--gris); margin: 0 0 24px; line-height: 1.6; }
+    .niveles {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 10px; margin-bottom: 24px;
+    }
+    .nivel {
+      border: 1px solid var(--borde); border-radius: 12px;
+      padding: 12px; background: #f8fafc;
+    }
+    .nivel strong { display: block; font: 700 .92rem Montserrat, sans-serif; }
+    .nivel span { color: var(--gris); font-size: .82rem; }
+    .campo { margin-bottom: 17px; }
+    label { display: block; font-weight: 600; margin-bottom: 7px; font-size: .92rem; }
+    input, select {
+      display: block; width: 100%; padding: 13px 14px; border: 1px solid var(--borde);
+      border-radius: 10px; font: 1rem "Open Sans", sans-serif; color: var(--texto);
+      background: white;
+    }
+    input:focus, select:focus { outline: 3px solid rgba(8,125,181,.15); border-color: var(--azul); }
+    .boton {
+      width: 100%; border: 0; border-radius: 10px; padding: 14px 18px;
+      background: var(--azul); color: white; font: 700 1rem Montserrat, sans-serif;
+      cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .boton:hover { background: var(--azul-oscuro); transform: translateY(-1px); }
+    .boton:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    #mensaje { display: none; padding: 13px 15px; border-radius: 10px; margin: 0 0 18px; }
+    #mensaje.exito { display: block; color: #166534; background: #dcfce7; }
+    #mensaje.error { display: block; color: #991b1b; background: #fee2e2; }
+    .pie { text-align: center; color: rgba(255,255,255,.85); font-size: .88rem; margin-top: 20px; }
+    .volver { display: inline-block; color: white; margin-top: 13px; text-decoration: none; font-weight: 600; }
+    .volver:hover { text-decoration: underline; }
+    @media (max-width: 520px) { body { padding: 18px 12px; } .tarjeta { border-radius: 15px; } }
+  </style>
+</head>
+<body>
+  <main class="contenedor">
+    <header class="encabezado">
+      <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo del Instituto">
+      <h1>Instituto Privado Aldeas Argentina</h1>
+      <p>Formulario de preinscripción</p>
+      <a class="volver" href="{{ url_for('inicio') }}">← Volver al sitio principal</a>
+    </header>
+
+    <section class="tarjeta">
+      <h2>Solicitá una preinscripción</h2>
+      <p class="introduccion">
+        Completá los datos solicitados. La preinscripción quedará registrada y la institución
+        podrá comunicarse con vos para continuar el proceso.
+      </p>
+
+      <div class="niveles" aria-label="Disponibilidad de cupos">
+        {% for nivel, maximo, actuales in niveles %}
+          <div class="nivel">
+            <strong>{{ nivel }}</strong>
+            {% if actuales >= maximo %}
+              <span>Cupos completos</span>
+            {% else %}
+              <span>{{ maximo - actuales }} cupos disponibles</span>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div id="mensaje" role="status" aria-live="polite"></div>
+
+      <form id="formulario-inscripcion" action="{{ url_for('preinscribir') }}" method="POST">
+        <div class="campo">
+          <label for="nombre_alumno">Nombre y apellido del alumno</label>
+          <input id="nombre_alumno" name="nombre_alumno" type="text" maxlength="120" required>
+        </div>
+
+        <div class="campo">
+          <label for="nombre_tutor">Nombre y apellido del padre, madre o tutor</label>
+          <input id="nombre_tutor" name="nombre_tutor" type="text" maxlength="120" required>
+        </div>
+
+        <div class="campo">
+          <label for="telefono">Teléfono de contacto</label>
+          <input id="telefono" name="telefono" type="tel" maxlength="40" required>
+        </div>
+
+        <div class="campo">
+          <label for="email">Correo electrónico</label>
+          <input id="email" name="email" type="email" maxlength="150" required>
+        </div>
+
+        <div class="campo">
+          <label for="nivel">Nivel al que desea ingresar</label>
+          <select id="nivel" name="nivel" required>
+            <option value="">Seleccioná un nivel</option>
+            {% for nivel, maximo, actuales in niveles %}
+              <option value="{{ nivel }}" {% if actuales >= maximo %}disabled{% endif %}>
+                {{ nivel }}{% if actuales >= maximo %} — cupos completos{% endif %}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button class="boton" id="enviar" type="submit">Enviar preinscripción</button>
+      </form>
+    </section>
+
+    <footer class="pie">
+      Calle Pergamino 1243 · Oberá, Misiones · Argentina
+    </footer>
+  </main>
+
+  <script>
+    const formulario = document.getElementById("formulario-inscripcion");
+    const mensaje = document.getElementById("mensaje");
+    const boton = document.getElementById("enviar");
+
+    formulario.addEventListener("submit", async (evento) => {
+      evento.preventDefault();
+      mensaje.className = "";
+      mensaje.textContent = "";
+      boton.disabled = true;
+      boton.textContent = "Enviando...";
+
+      try {
+        const respuesta = await fetch(formulario.action, {
+          method: "POST",
+          body: new FormData(formulario),
+          headers: { "Accept": "application/json" }
+        });
+        const resultado = await respuesta.json();
+
+        mensaje.textContent = resultado.mensaje || "No se pudo procesar la solicitud.";
+        mensaje.className = respuesta.ok ? "exito" : "error";
+
+        if (respuesta.ok) {
+          formulario.reset();
+          mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      } catch (error) {
+        mensaje.textContent = "No se pudo conectar con el servidor. Intentá nuevamente.";
+        mensaje.className = "error";
+      } finally {
+        boton.disabled = false;
+        boton.textContent = "Enviar preinscripción";
+      }
+    });
+  </script>
+</body>
+</html>
