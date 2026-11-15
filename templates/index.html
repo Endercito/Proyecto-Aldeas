@@ -91,7 +91,6 @@
       justify-content: space-between;
       align-items: center;
     }
-    /* Muestra el logo y el texto en computadoras */
     .logo-brand {
       display: flex;
       align-items: center;
@@ -143,7 +142,6 @@
       background-color: #f0f7ff;
     }
 
-    /* Menú desplegable */
     .dropdown {
       position: absolute;
       top: 100%;
@@ -175,7 +173,6 @@
       padding-left: 22px;
     }
 
-    /* BOTÓN ADMISIÓN NAVBAR */
     .btn-nav-admission {
       background-color: var(--primary-color) !important;
       color: #ffffff !important;
@@ -187,7 +184,6 @@
       background-color: var(--primary-dark) !important;
     }
 
-    /* Estilos para el botón hamburguesa (fuera del media query) */
     .menu-toggle {
       display: none;
       cursor: pointer;
@@ -243,7 +239,6 @@
       font-weight: 400;
     }
 
-    /* Botones de Navegación Slider */
     .slider-btn {
       position: absolute;
       top: 50%;
@@ -270,7 +265,6 @@
     .prev-btn { left: 20px; }
     .next-btn { right: 20px; }
 
-    /* Indicadores de Dots */
     .slider-dots {
       position: absolute;
       bottom: 20px;
@@ -294,7 +288,6 @@
       border-radius: 10px;
     }
 
-    /* CONTENEDOR GENERAL DE SECCIONES */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -327,7 +320,6 @@
       font-size: 1rem;
     }
 
-    /* SECCIÓN NUESTRAS ORIENTACIONES DE SECUNDARIA */
     .orientaciones-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -390,7 +382,6 @@
       font-size: 0.85rem;
     }
 
-    /* SECCIÓN ESPECIAL PROMO 2026 INFORMATICA / ALUMNO SALIENTE */
     .promo-section {
       background: #ffffff;
       border-radius: 16px;
@@ -442,7 +433,6 @@
       line-height: 1.7;
     }
 
-    /* BOTONES */
     .btn {
       display: inline-block;
       padding: 12px 28px;
@@ -474,7 +464,6 @@
       color: #ffffff;
     }
 
-    /* BLOQUE UBICACIÓN Y CONTACTO CENTRADO */
     .contact-wrapper {
       max-width: 800px;
       margin: 0 auto;
@@ -517,7 +506,6 @@
       font-size: 0.95rem;
     }
 
-    /* FOOTER INSTITUCIONAL */
     footer {
       background-color: var(--secondary-color);
       color: #cbd5e1;
@@ -560,16 +548,13 @@
       color: #64748b;
     }
 
-    /* RESPONSIVE DESIGN (CELULARES < 900PX) */
     @media (max-width: 900px) {
-      /* Reduce un 10% el tamaño general en celulares */
       body {
         transform: scale(0.9);
         transform-origin: top left;
-        width: 111.11%; /* Compensa el escalado para evitar espacios en blanco al costado */
+        width: 111.11%;
       }
 
-      /* Clases para ocultar el encabezado al hacer scroll hacia abajo */
       .hide-header .top-bar {
         transform: translateY(-100%);
       }
@@ -585,7 +570,7 @@
       }
       
       .logo-brand {
-        display: flex; /* Visible al inicio arriba del todo */
+        display: flex;
       }
       .logo-brand img {
         height: 40px;
@@ -601,7 +586,6 @@
         top: 20px;
       }
 
-      /* Oculta el menú por defecto en celulares */
       .nav-list {
         display: none;
         flex-direction: column;
@@ -673,18 +657,17 @@
     </div>
   </div>
 
-  <!-- ENCABEZADO Y NAVEGACIÓN ESTILO LINNEO -->
+  <!-- ENCABEZADO Y NAVEGACIÓN -->
   <header>
     <div class="header-container">
       <a href="#" class="logo-brand">
-         <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Logo Colegio">
+         <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Colegio">
         <div class="brand-text">
           <h1>INSTITUTO PRIVADO ALDEAS ARGENTINA</h1>
         </div>
       </a>
 
       <nav>
-        <!-- Botón Hamburguesa para Celulares -->
         <div class="menu-toggle" id="mobile-menu">
           <i class="fa-solid fa-bars"></i>
         </div>
@@ -697,15 +680,15 @@
               <a href="https://www.aldeasinfantiles.org.ar/nuestro-trabajo/programas/educacion" target="_blank">Nuestra Historia</a>
               <a href="#ideario">Ideario Pedagógico</a>
               <a href="#autoridades">Autoridades</a>
-			  <a href="admin" class="btn" style="text-decoration: none; display: inline-block; text-align: center; background: #8e44ad; color: white; padding: 12px 20px; border-radius: 12px; font-weight: bold;">Gestion Administrativa</a>
+              <a href="admin" class="btn" style="text-decoration: none; display: inline-block; text-align: center; background: #8e44ad; color: white; padding: 12px 20px; border-radius: 12px; font-weight: bold;">Gestion Administrativa</a>
             </div>
           </li>
           <li>
             <a href="#">Oferta Educativa <i class="fa-solid fa-chevron-down" style="font-size:0.7rem; margin-left:4px;"></i></a>
             <div class="dropdown">
-              <a href="#ninicial">Nivel Inicial </a>
-              <a href="#nprimario">Nivel Primario </a>
-              <a href="#orientaciones">Nivel Secundario </a>
+              <a href="#ninicial">Nivel Inicial</a>
+              <a href="#nprimario">Nivel Primario</a>
+              <a href="#orientaciones">Nivel Secundario</a>
             </div>
           </li>
           <li><a href="#salientes">Alumnos Salientes</a></li>
@@ -719,7 +702,6 @@
   <!-- CARRUSEL SLIDER DESLIZABLE -->
   <section class="hero-slider">
     <div class="slide-track" id="slideTrack">
-      <!-- Slide 1: Banner Principal -->
       <div class="slide">
          <img src="{{ url_for('static', filename='niña1.png') }}" alt="niña">
         <div class="slide-caption">
@@ -728,7 +710,6 @@
           <a href="#ninicial" class="btn btn-primary">Conocer Oferta Educativa</a>
         </div>
       </div>
-      <!-- Slide 2: Promo 2026 -->
       <div class="slide">
         <img src="{{ url_for('static', filename='quinto3.jpg') }}" alt="Quinto Info">
         <div class="slide-caption">
@@ -737,18 +718,14 @@
           <a href="#salientes" class="btn btn-primary">Ver Alumnos Salientes</a>
         </div>
       </div>
-	  
-	 <!-- Slide 3: Promo 2026 humanidades-->
       <div class="slide" style="overflow: visible;">
          <img src="{{ url_for('static', filename='Quinto2.png') }}" alt="Quinto Human">
-		<div class="slide-caption">
+        <div class="slide-caption">
           <h2>Promo 2026 - Bachillerato en Humanidades</h2>
-          <p>Alumnos capacitados en actividades socioeconomicas, psicologicas y con conciencia social.</p>
+          <p>Alumnos capacitados en actividades socioeconómicas, psicológicas y con conciencia social.</p>
           <a href="#salientes" class="btn btn-primary">Ver Alumnos Salientes</a>
         </div>
       </div>
-	  
-      <!-- Slide 4: Identidad Institucional -->
       <div class="slide">
         <img src="https://www.aldeasinfantiles.org.ar/getmedia/575e109c-d2d1-41d6-ba0b-1f4de0c2ffb9/WhatsApp-Image-2021-08-03-at-08-44-38-(84).jpeg?width=1275&height=750&ext=.jpeg" alt="Comunidad Educativa Aldeas Argentina">
         <div class="slide-caption">
@@ -759,16 +736,14 @@
       </div>
     </div>
 
-    <!-- Botones Anterior y Siguiente -->
     <button class="slider-btn prev-btn" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
     <button class="slider-btn next-btn" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
 
-    <!-- Indicadores -->
     <div class="slider-dots">
       <span class="dot active" data-index="0"></span>
       <span class="dot" data-index="1"></span>
       <span class="dot" data-index="2"></span>
-	  <span class="dot" data-index="3"></span>
+      <span class="dot" data-index="3"></span>
     </div>
   </section>
 
@@ -776,29 +751,26 @@
   <section class="container" id="ideario">
     <div class="section-title">
       <h2>Equipo de Apoyo y Orientación Escolar (EdAyO)</h2>
-      <p> En el Instituto Privado Aldeas Argentina, entendemos la educación como un proceso donde cada estudiante necesita ser escuchado, valorado y acompañado. El EdAyO es un espacio de trabajo continuo dentro de la escuela que busca garantizar que todos los chicos y chicas puedan transitar su escolaridad de la mejor manera posible, contemplando sus realidades, ritmos y necesidades.
-      Adaptándonos a las normativas educativas provinciales y nacionales de inclusión (Res. SPEPM N° 07/22 y Res. CFE N° 239/14), transformamos la antigua estructura del DAE para consolidar un equipo más activo, cercano e integrado a la dinámica diaria de la institución.</p>
+      <p> En el Instituto Privado Aldeas Argentina, entendemos la educación como un proceso donde cada estudiante necesita ser escuchado, valorado y acompañado. El EdAyO es un espacio de trabajo continuo dentro de la escuela que busca garantizar que todos los chicos y chicas puedan transitar su escolaridad de la mejor manera posible, contemplando sus realidades, ritmos y necesidades.</p>
       <h3>¿Cómo trabajamos?</h3>
       <p>El equipo está conformado por profesionales y educadores de distintas áreas —Psicopedagogía, Psicología, Trabajo Social y Docencia— que aportan miradas complementarias para abordar las situaciones de manera integral. Trabajamos en tres ejes fundamentales:</p>
       <ul>
         <li><i class="fa-solid fa-check"></i> Con los estudiantes: Ofreciendo contención, orientación y herramientas para resolver dificultades de aprendizaje, favorecer su autonomía y ayudarlos a proyectar su futuro.</li>
         <li><i class="fa-solid fa-check"></i> Con la comunidad educativa: Asesorando y colaborando a la par de docentes y directivos para construir aulas más inclusivas y mejorar la convivencia escolar.</li>
-        <li><i class="fa-solid fa-check"></i> Con el entorno y la familia: Promoviendo la corresponsabilidad y articulando acciones con organismos externos (en cumplimiento de la Ley 26.061 de Protección Integral de Derechos) para cuidar el bienestar de niñas, niños y adolescentes.</li>
+        <li><i class="fa-solid fa-check"></i> Con el entorno y la familia: Promoviendo la corresponsabilidad y articulando acciones con organismos externos para cuidar el bienestar de niñas, niños y adolescentes.</li>
       </ul>
     </div>
   </section>
 
-  <!-- SECCIÓN ORIENTACIONES EDUCATIVAS -->
   <!-- Nivel Inicial -->
   <section class="container" id="ninicial">
     <div class="section-title">
       <h2>Nivel Inicial</h2>
       <p>Los alumnos de nivel inicial de la institución</p>
     </div>
-  
     <div class="orientacion-card"> 
       <div class="orientacion-header" style="background-color: #e83e8c;">
-         <img src="{{ url_for('static', filename='ninicial.png') }}" alt="Logo Inicial"> width="50">
+         <img src="{{ url_for('static', filename='ninicial.png') }}" alt="Logo Inicial" width="50">
         <h3>Nivel Inicial</h3>
       </div>
       <div class="orientacion-body">
@@ -807,7 +779,7 @@
           <li><i class="fa-solid fa-check"></i> Desarrollo Sociopersonal</li>
           <li><i class="fa-solid fa-check"></i> Educación de primer nivel</li>
           <li><i class="fa-solid fa-check"></i> Trabajar en equipo</li>
-          <li><i class="fa-solid fa-check"></i> Identificar limites y libertades</li>
+          <li><i class="fa-solid fa-check"></i> Identificar límites y libertades</li>
           <li><i class="fa-solid fa-check"></i> Crecer en sociedad</li>
         </ul>
         <a href="#salientes" class="btn btn-outline">Ver Alumnos y Proyectos</a>
@@ -821,10 +793,9 @@
       <h2>Nivel Primario</h2>
       <p>Los alumnos de nivel primario de la institución</p>
     </div>
-  
     <div class="orientacion-card"> 
       <div class="orientacion-header" style="background-color: #34bbe9;">
-	  <img src="{{ url_for('static', filename='nprimario.png') }}" alt="Logo nprimario" width="50">		
+        <img src="{{ url_for('static', filename='nprimario.png') }}" alt="Logo nprimario" width="50">		
         <h3>Nivel Primario</h3>
       </div>
       <div class="orientacion-body">
@@ -833,7 +804,7 @@
           <li><i class="fa-solid fa-check"></i> Desarrollo Sociopersonal</li>
           <li><i class="fa-solid fa-check"></i> Educación de primer nivel</li>
           <li><i class="fa-solid fa-check"></i> Trabajar en equipo</li>
-          <li><i class="fa-solid fa-check"></i> Identificar limites y libertades</li>
+          <li><i class="fa-solid fa-check"></i> Identificar límites y libertades</li>
           <li><i class="fa-solid fa-check"></i> Crecer en sociedad</li>
         </ul>
         <a href="#salientes" class="btn btn-outline">Ver Alumnos y Proyectos</a>
@@ -849,7 +820,6 @@
     </div>
 
     <div class="orientaciones-grid">
-      <!-- Orientación 1: Informática -->
       <div class="orientacion-card">
         <div class="orientacion-header">
           <i class="fa-solid fa-laptop-code"></i>
@@ -868,7 +838,6 @@
         </div>
       </div>
 
-      <!-- Orientación 2: Humanidades -->
       <div class="orientacion-card">
         <div class="orientacion-header humanidades">
           <i class="fa-solid fa-book-open-reader"></i>
@@ -889,7 +858,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN ALUMNOS SALIENTES / PROMO 2026 -->
+  <!-- ALUMNOS SALIENTES -->
   <section class="container" id="salientes" style="padding-top:0;">
     <div class="section-title">
       <h2>Alumnos Salientes</h2>
@@ -912,7 +881,7 @@
     <div class="promo-section">
       <div class="promo-grid">
         <div class="promo-img-box">
-           <img src="{{ url_for('static', filename='Quinto1.png') }}" alt="Quinto Informatica"> style="object-position: 30% center;">
+           <img src="{{ url_for('static', filename='Quinto1.png') }}" alt="Quinto Informatica" style="object-position: 30% center;">
         </div>
         <div class="promo-content">
           <span class="badge-promo">Secundaria | Promo 26 • Orientación Informática</span>
@@ -931,30 +900,27 @@
         <div class="promo-content">
           <span class="badge-promo">Secundaria | Promo 26 • Orientación en humanidades</span>
           <h3>¡Felicidades estudiantes!</h3>
-          <p>Felicitamos los estudiantes del Bachillerato en Humanidades, gracias por su compromiso con la institución y su colaboración con la sociedad oberena en sus tareas.</p>
+          <p>Felicitamos a los estudiantes del Bachillerato en Humanidades, gracias por su compromiso con la institución y su colaboración con la sociedad obereña en sus tareas.</p>
           <p><strong>Especializaciones del plan de estudios:</strong> Sociología y Psicología Aplicada, Literatura Regional e Hispanoamericana, Metodología de la Investigación Social, Filosofía y Ética Ciudadana y Proyectos de Intervención Comunitaria.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- UBICACIÓN Y CONTACTO CENTRADO -->
+  <!-- UBICACIÓN Y CONTACTO -->
   <section class="container" id="contacto">
     <div class="contact-wrapper">
       <h3>Ubicación e Informes</h3>
-      
       <div class="contact-item">
         <i class="fa-solid fa-location-dot"></i>
         <h4>Dirección Institucional</h4>
         <p>Calle Pergamino 1243, Oberá, Misiones</p>
       </div>
-
       <div class="contact-item">
         <i class="fa-solid fa-phone"></i>
         <h4>Atención Telefónica</h4>
         <p>(03755) 42-1234 / 42-5678</p>
       </div>
-
       <div class="contact-item">
         <i class="fa-regular fa-clock"></i>
         <h4>Horarios de Secretaría</h4>
@@ -963,7 +929,7 @@
     </div>
   </section>
 
-  <!-- FOOTER INSTITUCIONAL -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-container">
       <div class="footer-brand">
@@ -982,12 +948,14 @@
     </div>
   </footer>
 
-  <!-- SCRIPT PARA EL CARRUSEL, MENÚ Y SCROLL DINÁMICO -->
+  <!-- SCRIPT PARA EL CARRUSEL Y MENÚ -->
   <script>
     const slideTrack = document.getElementById('slideTrack');
     const dots = document.querySelectorAll('.dot');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('navMenu');
     
     let currentIndex = 0;
     const totalSlides = 4;
@@ -1011,49 +979,21 @@
     prevBtn.addEventListener('click', () => updateSlider(currentIndex - 1));
     nextBtn.addEventListener('click', () => updateSlider(currentIndex + 1));
 
-    dots.forEach(dot => {
+    dots.forEach((dot) => {
       dot.addEventListener('click', (e) => {
-        const idx = parseInt(e.target.getAttribute('data-index'));
-        updateSlider(idx);
+        const index = parseInt(e.target.getAttribute('data-index'));
+        updateSlider(index);
       });
     });
 
-    // Avance automático cada 6 segundos
+    // Auto slide cada 5 segundos
     setInterval(() => {
       updateSlider(currentIndex + 1);
-    }, 6000);
+    }, 5000);
 
-    // Código para el menú desplegable en celulares
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('navMenu');
-
+    // Menú desplegable en celulares
     mobileMenu.addEventListener('click', () => {
       navMenu.classList.toggle('active');
-      
-      const icon = mobileMenu.querySelector('i');
-      if (navMenu.classList.contains('active')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-xmark');
-      } else {
-        icon.classList.remove('fa-xmark');
-        icon.classList.add('fa-bars');
-      }
-    });
-
-    // Script para ocultar/mostrar el encabezado en celulares al hacer scroll
-    let lastScrollTop = 0;
-    window.addEventListener('scroll', () => {
-      if (window.innerWidth <= 900) {
-        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        if (currentScroll > lastScrollTop && currentScroll > 50) {
-          // Bajando: oculta el encabezado
-          document.body.classList.add('hide-header');
-        } else {
-          // Subiendo: muestra el encabezado
-          document.body.classList.remove('hide-header');
-        }
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-      }
     });
   </script>
 </body>
